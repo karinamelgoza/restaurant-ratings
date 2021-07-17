@@ -65,16 +65,16 @@ def add_ratings():
 
 # user_options()
 
-# def rate_random():
-#     updated_score = input('new score between 1-5:\n')
-#     ran_res = random.choice(list(ratings.items()))
-#     list_con = list(ran_res)
-#     print(list_con)
-#     list_con[1] = updated_score
+def rate_random():
+    ran_res = random.choice(list(ratings.items()))
+    print(ran_res[0], ' is rated at ', ran_res[1], '.', sep='')
+    updated_score = input('new score between 1-5:\n')
+    ratings[ran_res[0]] = updated_score
+    # print(ratings)
 
 
 def initial_input():
-    print("If you would like to ...\n see restaurant ratings, please type: ratings\n rate a new restaurant, please type: rate\n quit, enter any letter key")
+    print("If you would like to ...\n see restaurant ratings, please enter: ratings\n rate a new restaurant or update an existing one, please enter: rate\n update a random restaurant, please enter: random\n quit, enter: quit")
     user_input = input()
 
     def user_options():
@@ -84,8 +84,14 @@ def initial_input():
         elif user_input == 'rate':
             add_ratings()
             initial_input()
-        else:
+        elif user_input == 'random':
+            rate_random()
+            initial_input()
+        elif user_input == 'quit':
             print('Have a nice day!')
+        else:
+            print("That's not an option")
+            initial_input()
 
     user_options()
 
